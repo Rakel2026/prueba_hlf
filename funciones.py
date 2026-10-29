@@ -162,41 +162,40 @@ def colocar_barcos(tablero):
 
 ## FUNCION PARA REALIZAR UN DISPARO
 
-def disparar(tablero_barcos, tablero_disparos, filas_disparo:int, columnas_disparo:int):
+def disparar(disparos_jugador, barcos_rival, filas_disparo:int, columnas_disparo:int):
     try:
         print(filas_disparo, columnas_disparo)
-        if tablero_barcos[filas_disparo][columnas_disparo] == " ":
-            tablero_disparos[filas_disparo][columnas_disparo] = "A"
+        if barcos_rival[filas_disparo][columnas_disparo] == " ":
+            disparos_jugador[filas_disparo][columnas_disparo] = "A"
             print ("AGUA!!! PIERDES TURNO!!!")
                     
-        elif tablero_barcos[filas_disparo][columnas_disparo] == "A" or tablero_barcos[filas_disparo][columnas_disparo] == "X":
+        elif barcos_rival[filas_disparo][columnas_disparo] == "X":
             print ("Disparo ya hecho")
             disparar()
         else: # es decir, si es "O"
-            tablero_disparos[filas_disparo][columnas_disparo] = "X"
-            tablero_barcos[filas_disparo][columnas_disparo] = "X"
+            disparos_jugador[filas_disparo][columnas_disparo] = "X"
 
     except:
         "Disparo no válido"
 
-    return (tablero_barcos, tablero_disparos)
+    return (disparos_jugador)
 
 
 ## FUNCION QUE IMPRIME POR PANTALLA EL ESTADO ACTUAL DE LA PARTIDA DEL JUGADOR
 
 def pintar():
+    
     print("TABLERO BARCOS JUGADOR")
-    print(f.t_barcos_jugador)
+    print(t_barcos_jugador)
     print("--------------------------")
     print("TABLERO DISPAROS JUGADOR")
-    print(f.t_disparos_jugador)
+    print(t_disparos_jugador)
+    
+    
+    
+    ## FUNCION QUE MARCA EL TURNO DE JUEGO Y SI SE HA ACABADO LA PARTIDA Y HAY UN GANADOR
 
-    return
-
-
-## FUNCION QUE MARCA EL TURNO DE JUEGO Y SI SE HA ACABADO LA PARTIDA Y HAY UN GANADOR
-
-def turnos(t_barcos_rival, t_disparos_rival, t_barcos_jugador, t_disparos_jugador):
+def turnos(barcos_rival, disparos_rival, barcos_jugador, disparos_jugador):
     turno_jugador = True
     ganador=""
     while True:
@@ -204,22 +203,22 @@ def turnos(t_barcos_rival, t_disparos_rival, t_barcos_jugador, t_disparos_jugado
             print("Turno jugador")
             fila = int (input("Introduce un numero de 0 a 9 que indique la filas: "))
             columna = int (input("Introduce un numero de 0 a 9 que indique la columna: "))
-            t_disparos_jugador = disparar(t_barcos_rival, t_disparos_jugador, fila, columna)
+            disparos_jugador = disparar(barcos_rival, disparos_jugador, fila, columna)
             turno_jugador = False
             pintar()
         else:
             print("Turno rival")
             fila = int (np.random.randint(10))
             columna = int (np.random.randint(10))
-            t_disparos_rival = disparar(t_barcos_jugador, t_disparos_rival, fila, columna)
+            disparos_rival = disparar(barcos_jugador, disparos_rival, fila, columna)
             turno_jugador = True
             pintar()
 
-        if "O" not in t_barcos_rival:
-            ganador = "jugador"
+        if "O" not in barcos_rival:
+            ganador = "Jugador"
             break
-        if "O" not in t_barcos_jugador:
-            ganador = "rival"
+        if "O" not in barcos_jugador:
+            ganador = "Rival"
             break
 
     return ganador
