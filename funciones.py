@@ -150,7 +150,6 @@ def colocar_barcos(tablero):
                 barco = barco_eslora_4()
             else:
                 print("La eslora no es correcta")
-                colocar_barcos(tablero)
                 
             if all(tablero[i][j] == " " for i, j in barco):
                 for i, j in barco:

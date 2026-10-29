@@ -26,7 +26,7 @@ t_barcos_rival = f.colocar_barcos(t_barcos_rival)
 print("El tablero de barcos del rival es: ")
 print(t_barcos_rival)
 
-## EMPEZAMOS LA PARTIDA DECIDIENDO EL TURNO Y VAMOS JUGANDO.- Y TRAS HUNDIR LA FLOTA VER QUIEN ES EL GANADOR
+## EMPEZAMOS LA PARTIDA DECIDIENDO EL TURNO Y VAMOS JUGANDO.- TRAS HUNDIR LA FLOTA VEREMOS QUIEN ES EL/LA GANADOR/A
 
 ganador = f.turnos(t_barcos_rival, t_disparos_rival, t_barcos_jugador, t_disparos_jugador)
 
