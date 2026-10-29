@@ -175,6 +175,7 @@ def disparar(disparos_jugador, barcos_rival, filas_disparo:int, columnas_disparo
             disparar(disparos_jugador, barcos_rival, filas_disparo, columnas_disparo)
         else: # es decir, si es "O"
             disparos_jugador[filas_disparo][columnas_disparo] = "X"
+            barcos_rival[filas_disparo][columnas_disparo] = "X"
             acierto = True
 
 
