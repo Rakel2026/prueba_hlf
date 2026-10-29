@@ -1,26 +1,41 @@
-
-
-import funciones as f
 import numpy as np
+import funciones as f
+import variables as v
+
+## CREACIÓN DE TABLEROS
 
 t_barcos_rival = f.crear_tablero()
 t_disparos_rival = f.crear_tablero()
 t_barcos_jugador = f.crear_tablero()
 t_disparos_jugador = f.crear_tablero()
 
-#print(t_barcos_rival)
-#print(t_barcos_jugador)
 
-print("********************* TABLEROS JUGADOR *************************")
-print("TABLERO DE BARCOS")
+## PROCEDEMOS A CREAR Y COLOCAR LOS BARCOS EN LOS TABLEROS PERTINENTES
+
+# PRIMERO EN EL TABLERO DEL JUGADOR
+
+t_barcos_jugador = f.colocar_barcos(t_barcos_jugador)
+print("El tablero de barcos del juagdor es: ")
 print(t_barcos_jugador)
-print("TABLERO DE DISPAROS")
-print(t_disparos_jugador)
 
-#falta codigo de ayer.
+# DESPUES EN EL TABLERO DEL RIVAL
+
+t_barcos_rival = f.colocar_barcos(t_barcos_rival)
+print("El tablero de barcos del rival es: ")
+print(t_barcos_rival)
+
+## EMPEZAMOS LA PARTIDA DECIDIENDO EL TURNO Y VAMOS JUGANDO.- Y TRAS HUNDIR LA FLOTA VER QUIEN ES EL GANADOR
+
+ganador = f.turnos(t_barcos_rival, t_disparos_rival, t_barcos_jugador, t_disparos_jugador)
+
+print("EL GANADOR ES: ", ganador, " !!!!!")
 
 
-#print(np.random(20))
+
+
+
+
+
 
 
 
