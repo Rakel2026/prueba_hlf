@@ -15,8 +15,10 @@ t_disparos_jugador = f.crear_tablero()
 # PRIMERO EN EL TABLERO DEL JUGADOR
 
 t_barcos_jugador = f.colocar_barcos(t_barcos_jugador)
-print("El tablero de barcos del juagdor es: ")
+print("El tablero de barcos del jugador es: ")
 print(t_barcos_jugador)
+print("El tablero de disparos del jugador es: ")
+print(t_disparos_jugador)
 
 # DESPUES EN EL TABLERO DEL RIVAL
 

@@ -162,34 +162,38 @@ def colocar_barcos(tablero):
 
 ## FUNCION PARA REALIZAR UN DISPARO
 
-def disparar(disparos_jugador, barcos_rival, filas_disparo:int, columnas_disparo:int):
+def disparar(disparos_jugador, barcos_rival, filas_disparo:int, columnas_disparo:int,):
+    acierto = True
     try:
         print(filas_disparo, columnas_disparo)
         if barcos_rival[filas_disparo][columnas_disparo] == " ":
             disparos_jugador[filas_disparo][columnas_disparo] = "A"
             print ("AGUA!!! PIERDES TURNO!!!")
+            acierto = False
                     
         elif barcos_rival[filas_disparo][columnas_disparo] == "X":
             print ("Disparo ya hecho")
-            disparar()
+            disparar(disparos_jugador, barcos_rival, filas_disparo, columnas_disparo)
         else: # es decir, si es "O"
             disparos_jugador[filas_disparo][columnas_disparo] = "X"
+            acierto = True
+
 
     except:
         "Disparo no válido"
 
-    return (disparos_jugador)
+    return (disparos_jugador, acierto)
 
 
 ## FUNCION QUE IMPRIME POR PANTALLA EL ESTADO ACTUAL DE LA PARTIDA DEL JUGADOR
 
-def pintar():
+def pintar(tablero_barcos, tablero_disparos):
     
-    print("TABLERO BARCOS JUGADOR")
-    print(t_barcos_jugador)
+    print("TABLERO BARCOS")
+    print(tablero_barcos)
     print("--------------------------")
-    print("TABLERO DISPAROS JUGADOR")
-    print(t_disparos_jugador)
+    print("TABLERO DISPAROS")
+    print(tablero_disparos)
     
     
     
@@ -203,16 +207,22 @@ def turnos(barcos_rival, disparos_rival, barcos_jugador, disparos_jugador):
             print("Turno jugador")
             fila = int (input("Introduce un numero de 0 a 9 que indique la filas: "))
             columna = int (input("Introduce un numero de 0 a 9 que indique la columna: "))
-            disparos_jugador = disparar(barcos_rival, disparos_jugador, fila, columna)
-            turno_jugador = False
-            pintar()
+            disparos_jugador, acierto = disparar(disparos_jugador, barcos_rival, fila, columna)
+            if acierto == False:
+                turno_jugador = False
+            else:
+                turno_jugador = True
+            pintar(barcos_jugador, disparos_jugador)
         else:
             print("Turno rival")
             fila = int (np.random.randint(10))
             columna = int (np.random.randint(10))
-            disparos_rival = disparar(barcos_jugador, disparos_rival, fila, columna)
-            turno_jugador = True
-            pintar()
+            disparos_rival, acierto = disparar(disparos_rival, barcos_jugador, fila, columna)
+            if acierto is False:
+                turno_jugador = True
+            else:
+                turno_jugador = False
+            pintar(barcos_rival, disparos_rival)
 
         if "O" not in barcos_rival:
             ganador = "Jugador"
