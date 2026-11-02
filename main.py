@@ -1,6 +1,11 @@
 import numpy as np
 import funciones as f
 import variables as v
+import os
+
+## INICIO DEL JUEGO
+print("¡Bienvenido a Hundir la Flota!")
+
 
 ## CREACIÓN DE TABLEROS
 
@@ -32,12 +37,6 @@ ganador = f.turnos(t_barcos_rival, t_disparos_rival, t_barcos_jugador, t_disparo
 
 print("EL GANADOR ES: ", ganador, " !!!!!")
 
-## VOLVER A JUGAR OTRA PARTIDA
-
-otra_partida = input("Quieres jugar otra partida? Responde 'S' si es que SI o 'N' si es que NO: ")
-
-if otra_partida == "S":
-    print("pyhton main.py")
 
 
 
